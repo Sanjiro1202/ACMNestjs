@@ -3,12 +3,13 @@ import { Repository, DeepPartial } from 'typeorm';
 import { usuario } from '../entidades/usuario.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { crearUsuarioDto, actualizarUsuarioDto } from '../dto/usuario.dto';
+import { Rol } from '../entidades/rol.entity';
 
 @Injectable()
 export class usuarioService {
     constructor(
         @InjectRepository(usuario)
-        private usuarioRepo: Repository<usuario>
+        private usuarioRepo: Repository<usuario>,
     ){}
 
 
@@ -69,12 +70,13 @@ export class usuarioService {
 
   //Consultar Usuario
   async consultarTodos(){
-    return await this.usuarioRepo.find(); 
+    return await this.usuarioRepo.find({
+      relations: ["fk_rol_user"]}); 
   }
 
   //Consultar Usuario Id
   async consultarTodosCedula(cedula: string){
-    return await this.usuarioRepo.findOne({where: {cedula: cedula}}); 
+    return await this.usuarioRepo.findOne({where: {cedula: cedula}, relations: ["fk_rol_user"]}); 
   }
 
 

@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const usuario_services_1 = require("../servicios/usuario.services");
 const usuario_dto_1 = require("../dto/usuario.dto");
 const login_dto_1 = require("../dto/login.dto");
+const swagger_1 = require("@nestjs/swagger");
 let UsuarioController = class UsuarioController {
     constructor(usuarioService) {
         this.usuarioService = usuarioService;
@@ -53,6 +54,10 @@ __decorate([
 __decorate([
     (0, common_1.Post)('crearUsuario'),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    (0, swagger_1.ApiOperation)({ summary: 'Crear un nuevo usuario' }),
+    (0, swagger_1.ApiBody)({ type: usuario_dto_1.crearUsuarioDto }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Usuario creado con éxito' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Datos de usuario inválidos' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [usuario_dto_1.crearUsuarioDto]),
@@ -98,6 +103,7 @@ __decorate([
 ], UsuarioController.prototype, "consultarUsuarioCedula", null);
 exports.UsuarioController = UsuarioController = __decorate([
     (0, common_1.Controller)('usuario'),
+    (0, swagger_1.ApiTags)('Usuario'),
     __metadata("design:paramtypes", [usuario_services_1.usuarioService])
 ], UsuarioController);
 //# sourceMappingURL=usuario.controller.js.map

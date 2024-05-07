@@ -2,10 +2,12 @@ import { Controller, Get, Post, Param, Put, Body, UsePipes, ValidationPipe, Pars
 import { usuarioService } from 'src/usuario/servicios/usuario.services';
 import { actualizarUsuarioDto, crearUsuarioDto } from '../dto/usuario.dto';
 import { crearLoginDto } from '../dto/login.dto';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 
 
 @Controller('usuario')
+@ApiTags('Usuario')
 export class UsuarioController {
   constructor(private usuarioService: usuarioService) {}
 
@@ -18,6 +20,10 @@ export class UsuarioController {
 
   @Post('crearUsuario')
   @UsePipes(new ValidationPipe())
+  @ApiOperation({ summary: 'Crear un nuevo usuario' })
+  @ApiBody({ type: crearUsuarioDto }) // Especifica el tipo del cuerpo esperado
+  @ApiResponse({ status: 201, description: 'Usuario creado con éxito' })
+  @ApiResponse({ status: 400, description: 'Datos de usuario inválidos' })
   async crearUsuario(@Body() data: crearUsuarioDto) {
     return await this.usuarioService.crearUsuario(data);
   }
@@ -50,6 +56,8 @@ export class UsuarioController {
   async consultarUsuarioCedula(@Param('cedula', ParseIntPipe) cedula: string){
     return await this.usuarioService.consultarTodosCedula(cedula);
   }
+
+  
   
 
 

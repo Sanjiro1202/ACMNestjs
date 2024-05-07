@@ -72,10 +72,12 @@ let usuarioService = class usuarioService {
         }
     }
     async consultarTodos() {
-        return await this.usuarioRepo.find();
+        return await this.usuarioRepo.find({
+            relations: ["fk_rol_user"]
+        });
     }
     async consultarTodosCedula(cedula) {
-        return await this.usuarioRepo.findOne({ where: { cedula: cedula } });
+        return await this.usuarioRepo.findOne({ where: { cedula: cedula }, relations: ["fk_rol_user"] });
     }
     async actualizarUsuario(cedula, data) {
         try {

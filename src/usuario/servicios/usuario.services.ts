@@ -17,28 +17,7 @@ export class usuarioService {
         return 'Mi primer servicio';
     }
 
-    async login(correo: string, password: string) {
-      try{
-      const user = await this.usuarioRepo.find({where:[{ correo: correo , password: password}]});
-      if (user.length == 0) {
-        return{
-          statusCode: 404,
-          message: "Usuario o contraseña incorrectos"
-        }
-      }
-      return {
-        statusCode: 200,
-        user: user,
-        Response: true
-      }
-    }catch(error){
-      return {
-        statusCode: 500,
-        message: 'Error Interno'
-    }
-
-    }
-    }
+    
   
 
     //Crear Usuario

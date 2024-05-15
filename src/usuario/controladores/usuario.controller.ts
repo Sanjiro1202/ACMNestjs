@@ -1,11 +1,14 @@
-import { Controller, Get, Post, Param, Put, Body, UsePipes, ValidationPipe, ParseIntPipe, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Param, Put, Body, UsePipes, ValidationPipe, ParseIntPipe, Delete, UseGuards } from '@nestjs/common';
 import { usuarioService } from 'src/usuario/servicios/usuario.services';
 import { actualizarUsuarioDto, crearUsuarioDto } from '../dto/usuario.dto';
-import { crearLoginDto } from '../dto/login.dto';
+import { crearLoginDto } from '../../auth/dto/login.dto';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guards';
+import { Roles } from 'src/auth/guards/roles.decorator';
 
 
-
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('usuario')
 @ApiTags('Usuario')
 export class UsuarioController {
@@ -14,6 +17,7 @@ export class UsuarioController {
  
 
   @Get('prueba')
+  @Roles('Administrador','Empleado', 'Cliente')
   findAll(): string {
     return  this.usuarioService.prueba();
   }
@@ -46,11 +50,6 @@ export class UsuarioController {
   }
 
 
-  @Post('login')
-  @UsePipes(new ValidationPipe())
-  login(@Body() payload: crearLoginDto) {
-    return this.usuarioService.login(payload.correo, payload.password);
-  }
 
   @Get('consultarUsuarioCedula/:cedula')
   async consultarUsuarioCedula(@Param('cedula', ParseIntPipe) cedula: string){

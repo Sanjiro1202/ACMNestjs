@@ -27,11 +27,10 @@ exports.DatabaseModule = DatabaseModule = __decorate([
                         database: name,
                         schema: schema,
                         username: user,
-                        password: password || 'root',
+                        password: password || 'A$eSX&fLGAZkp8',
                         port,
                         synchronize: true,
                         autoLoadEntities: true,
-                        ssl: false
                     };
                 },
             }),

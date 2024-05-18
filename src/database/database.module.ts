@@ -21,11 +21,11 @@ import config from 'src/config';
           database: name,
           schema: schema,
           username: user,
-          password: password || 'root',
+          password: password || 'A$eSX&fLGAZkp8',
           port,
           synchronize: true,
           autoLoadEntities: true,
-          ssl: false
+          // ssl: false
         };
       },
     }),

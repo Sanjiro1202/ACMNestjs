@@ -21,9 +21,6 @@ let usuarioService = class usuarioService {
     constructor(usuarioRepo) {
         this.usuarioRepo = usuarioRepo;
     }
-    prueba() {
-        return 'Mi primer servicio';
-    }
     async crearUsuario(data) {
         try {
             const user = await this.usuarioRepo.find({ where: [{ cedula: data.cedula }, { correo: data.correo }] });

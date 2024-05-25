@@ -31,6 +31,7 @@ exports.DatabaseModule = DatabaseModule = __decorate([
                         port,
                         synchronize: true,
                         autoLoadEntities: true,
+                        ssl: false
                     };
                 },
             }),

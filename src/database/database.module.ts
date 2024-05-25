@@ -25,7 +25,7 @@ import config from 'src/config';
           port,
           synchronize: true,
           autoLoadEntities: true,
-          // ssl: false
+          ssl: false
         };
       },
     }),

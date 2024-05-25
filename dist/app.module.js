@@ -16,6 +16,8 @@ const enviroments_1 = require("./enviroments");
 const config_2 = require("./config");
 const database_module_1 = require("./dataBase/database.module");
 const auth_module_1 = require("./auth/auth.module");
+const producto_module_1 = require("./producto/producto.module");
+const categoria_module_1 = require("./categoria/categoria.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -29,7 +31,9 @@ exports.AppModule = AppModule = __decorate([
             }),
             database_module_1.DatabaseModule,
             usuario_module_1.UsuarioModule,
-            auth_module_1.AuthModule
+            auth_module_1.AuthModule,
+            categoria_module_1.CategoriaModule,
+            producto_module_1.ProductoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

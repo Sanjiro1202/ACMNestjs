@@ -4,7 +4,6 @@ import { crearUsuarioDto, actualizarUsuarioDto } from '../dto/usuario.dto';
 export declare class usuarioService {
     private usuarioRepo;
     constructor(usuarioRepo: Repository<usuario>);
-    prueba(): string;
     crearUsuario(data: crearUsuarioDto): Promise<{
         statusCode: number;
         message: string;

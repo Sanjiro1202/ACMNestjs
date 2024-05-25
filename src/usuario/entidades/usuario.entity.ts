@@ -2,9 +2,11 @@ import {
     Column,
     Entity,
     PrimaryGeneratedColumn,
-  ManyToOne, JoinColumn} from 'typeorm';
+  ManyToOne, JoinColumn,
+  OneToOne} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { Rol } from './rol.entity';
+import { CarritoCompras } from 'src/carrito-compras/entidades/carrito-compras.entity';
 
 
 @Entity()
@@ -34,4 +36,8 @@ export class usuario {
     })
   @JoinColumn({ name: 'fk_rol_user' })
   fk_rol_user: Rol;
+
+  @OneToOne(() => CarritoCompras, (cc) => cc.id)
+  @JoinColumn({name: 'carrito_compras_id'})
+  carrito_compras__id: CarritoCompras
 }

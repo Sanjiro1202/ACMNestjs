@@ -3,7 +3,6 @@ import { actualizarUsuarioDto, crearUsuarioDto } from '../dto/usuario.dto';
 export declare class UsuarioController {
     private usuarioService;
     constructor(usuarioService: usuarioService);
-    findAll(): string;
     crearUsuario(data: crearUsuarioDto): Promise<{
         statusCode: number;
         message: string;

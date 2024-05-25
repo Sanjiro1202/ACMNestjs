@@ -3,7 +3,6 @@ import { Repository, DeepPartial } from 'typeorm';
 import { usuario } from '../entidades/usuario.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { crearUsuarioDto, actualizarUsuarioDto } from '../dto/usuario.dto';
-import { Rol } from '../entidades/rol.entity';
 
 @Injectable()
 export class usuarioService {
@@ -11,15 +10,7 @@ export class usuarioService {
         @InjectRepository(usuario)
         private usuarioRepo: Repository<usuario>,
     ){}
-
-
-     prueba():string {
-        return 'Mi primer servicio';
-    }
-
     
-  
-
     //Crear Usuario
     async crearUsuario(data: crearUsuarioDto){
       try{

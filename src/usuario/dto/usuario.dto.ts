@@ -51,7 +51,7 @@ export class crearUsuarioDto {
   password: string;
 
   @ApiProperty()
- @IsNotEmpty()
+  @IsNotEmpty()
   fk_rol_user: Rol
 
 }
